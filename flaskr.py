@@ -22,13 +22,17 @@ app = Flask(__name__)
 # Load default config and override config from an environment variable
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'flaskr.db'),
-    DEBUG=True,
+    # DEBUG=True,
     SECRET_KEY='efault config and override config from an environmen',
     USERNAME='admin',
     PASSWORD='default'
 ))
+
+# the way to use environment variable
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
+# the way to use python-type file as variable
+# app.config.from_pyfile('flaskr.cfg')
 
 def connect_db():
     """Connects to the specific database."""
@@ -123,4 +127,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=8082)
